@@ -1,0 +1,19 @@
+pkgbase = zig
+	pkgdesc = a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software
+	pkgver = 0.16.0_dev.2145+gec25b1384
+	pkgrel = 1
+	url = https://ziglang.org/
+	arch = x86_64
+	groups = modified
+	license = MIT
+	checkdepends = lib32-glibc
+	makedepends = cmake
+	makedepends = llvm
+	depends = clang
+	depends = lld
+	depends = llvm-libs
+	options = !lto
+	source = https://ziglang.org/builds/zig-0.16.0-dev.2145+ec25b1384.tar.xz
+	sha256sums = d96fa813f5b87ba6c8aababb549e5b555b3fecd4d1db214b6b77794590cc1554
+
+pkgname = zig
