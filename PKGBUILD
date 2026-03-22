@@ -3,7 +3,7 @@
 # Customized by Makoto Teramoto <mteramoto.knct@gmail.com>
 
 pkgname=zig
-_pkgver=0.16.0-dev.2223+4f16e80ce
+_pkgver=0.16.0-dev.2962+08416b44f
 pkgver=$(echo "$_pkgver" | sed 's/-/_/g; s/+/+g/g')
 pkgrel=1
 pkgdesc='a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software'
@@ -11,26 +11,32 @@ arch=('x86_64')
 url='https://ziglang.org/'
 license=('MIT')
 options=('!lto')
-depends=('clang' 'lld' 'llvm-libs')
+depends=('clang21' 'lld21' 'llvm21-libs')
 groups=('modified')
-makedepends=('cmake' 'llvm')
+makedepends=('cmake' 'llvm21')
 checkdepends=('lib32-glibc')
 source=("https://ziglang.org/builds/zig-$_pkgver.tar.xz")
-sha256sums=('6ee805c8529b2f7cc4d9a8bdd9f670e2c82f437427b4a6678842f9ef618d8e30')
+sha256sums=('0237a37a540c9f7f06a48e1e29af7c00bfb8a4135adfd8ecd9910c27a4bf114d')
 
 build() {
     cd "$pkgname-$_pkgver"
 
     local cmake_vars=(
         # Use clang
-        CMAKE_C_COMPILER=$(which clang)
-        CMAKE_CXX_COMPILER=$(which clang++)
+        CMAKE_C_COMPILER=/usr/lib/llvm21/bin/clang-21
+        CMAKE_CXX_COMPILER=/usr/lib/llvm21/bin/clang++
         CMAKE_INSTALL_PREFIX=/usr
-        CMAKE_PREFIX_PATH=/usr
+        CMAKE_PREFIX_PATH=/usr/lib/llvm21
 
         # The zig CMakeLists uses build type Debug if not set
         # override it back to None so makepkg env vars are respected
         CMAKE_BUILD_TYPE=None
+
+        # Force the path to lld to be specified to avoid SEGV error
+        # caused by conflicts between llvm version.
+        CMAKE_LINKER_TYPE=LLD
+        CMAKE_C_USING_LINKER_LLD=/usr/lib/llvm21/bin/ld.lld
+        CMAKE_CXX_USING_LINKER_LLD=/usr/lib/llvm21/bin/ld.lld
 
         ZIG_PIE=ON
         ZIG_SHARED_LLVM=ON
@@ -39,7 +45,7 @@ build() {
         ZIG_TARGET_MCPU=baseline
     )
     cmake -B build "${cmake_vars[@]/#/-D}" .
-    cmake --build build --parallel $(($(nproc --all) - 2))
+    cmake --build build
 }
 
 package() {
