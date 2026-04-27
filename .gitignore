@@ -5,3 +5,4 @@
 !.nvchecker.toml
 !*.patch
 !README.txt
+!prepare.sh
