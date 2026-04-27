@@ -3,7 +3,7 @@
 # Customized by Makoto Teramoto <mteramoto.knct@gmail.com>
 
 pkgname=zig
-_pkgver=0.16.0-dev.2962+08416b44f
+_pkgver=0.17.0-dev.135+9df02121d
 pkgver=$(echo "$_pkgver" | sed 's/-/_/g; s/+/+g/g')
 pkgrel=1
 pkgdesc='a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software'
@@ -16,7 +16,7 @@ groups=('modified')
 makedepends=('cmake' 'llvm21')
 checkdepends=('lib32-glibc')
 source=("https://ziglang.org/builds/zig-$_pkgver.tar.xz")
-sha256sums=('0237a37a540c9f7f06a48e1e29af7c00bfb8a4135adfd8ecd9910c27a4bf114d')
+sha256sums=('8c97ff5fcc0d89fbc8fb80e6e4a88bcb34d55dd1141e88f8537758a923c2683d')
 
 build() {
     cd "$pkgname-$_pkgver"

@@ -1,6 +1,6 @@
 pkgbase = zig
 	pkgdesc = a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software
-	pkgver = 0.16.0_dev.2962+g08416b44f
+	pkgver = 0.17.0_dev.135+g9df02121d
 	pkgrel = 1
 	url = https://ziglang.org/
 	arch = x86_64
@@ -13,7 +13,7 @@ pkgbase = zig
 	depends = lld21
 	depends = llvm21-libs
 	options = !lto
-	source = https://ziglang.org/builds/zig-0.16.0-dev.2962+08416b44f.tar.xz
-	sha256sums = 0237a37a540c9f7f06a48e1e29af7c00bfb8a4135adfd8ecd9910c27a4bf114d
+	source = https://ziglang.org/builds/zig-0.17.0-dev.135+9df02121d.tar.xz
+	sha256sums = 8c97ff5fcc0d89fbc8fb80e6e4a88bcb34d55dd1141e88f8537758a923c2683d
 
 pkgname = zig
