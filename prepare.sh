@@ -17,6 +17,7 @@ function check_version_zig_master() {
     sed -i -E "s/^_pkgver=.+/_pkgver=$_zigver/g" PKGBUILD
     sed -i -E "s/^sha256sums=.+/sha256sums=\('$sha256sums'\)/g" PKGBUILD
 
+    makepkg --printsrcinfo > .SRCINFO
     echo "Update PKGBUILD"
   fi
 }
