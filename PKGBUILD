@@ -5,12 +5,12 @@
 pkgname=zig
 _pkgver=0.17.0-dev.248+95507faf1
 pkgver=$(echo "$_pkgver" | sed 's/-/_/g; s/+/+g/g')
-pkgrel=1
+pkgrel=2
 pkgdesc='a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software'
 arch=('x86_64')
 url='https://ziglang.org/'
 license=('MIT')
-options=('!lto')
+options=('!lto' '!debug')
 depends=('clang' 'lld' 'llvm-libs')
 groups=('modified')
 makedepends=('cmake' 'llvm')
